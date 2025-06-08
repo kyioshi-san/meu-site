@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para o Amor da Minha Vida</title>
+  <link rel="stylesheet" href="estilo.css" />
+</head>
+<body>
+  <!-- Fundo desfocado -->
+  <div class="overlay"></div>
+
+  <div class="container">
+    <div class="heart" onclick="explodirCoracoes()">❤️</div>
+
+    <h1>Minha Amorinha</h1>
+
+    <p>
+      Desde o momento em que te conheci, minha vida ficou mais bonita e colorida. Você é o meu sorriso mais sincero, meu abraço mais apertado e meu pensamento constante. 💕<br /><br />
+      Cada dia ao seu lado é um presente que eu agradeço com todo o meu coração. Você é a razão das minhas manhãs, a luz que ilumina meus caminhos, a paz que acalma minha alma.<br /><br />
+      Não há palavras suficientes para descrever o quanto você significa para mim. Com você, aprendi o verdadeiro sentido do amor, da cumplicidade e da felicidade.<br /><br />
+      Obrigado por existir, por ser exatamente quem você é, e por me permitir amar você intensamente a cada instante.<br /><br />
+      Você é o meu sonho realizado, minha inspiração diária e a minha eternidade ao alcance do coração.
+    </p>
+
+    <p class="signature">
+      Com todo o meu amor,<br />
+      Seu eterno apaixonado 💌
+    </p>
+  </div>
+
+  <script>
+    function explodirCoracoes() {
+      for (let i = 0; i < 30; i++) {
+        const coracao = document.createElement("div");
+        coracao.textContent = "❤️";
+        coracao.style.position = "absolute";
+        coracao.style.left = Math.random() * 100 + "vw";
+        coracao.style.top = Math.random() * 100 + "vh";
+        coracao.style.fontSize = Math.random() * 20 + 20 + "px";
+        coracao.style.opacity = 1;
+        coracao.style.transition = "transform 2s ease, opacity 2s ease";
+        coracao.style.zIndex = 9999;
+        document.body.appendChild(coracao);
+
+        setTimeout(() => {
+          coracao.style.transform = `translateY(-200px) scale(${Math.random() * 2})`;
+          coracao.style.opacity = 0;
+        }, 10);
+
+        setTimeout(() => coracao.remove(), 2000);
+      }
+
+      setTimeout(() => {
+        window.location.href = "mesversario.html";
+      }, 2500);
+    }
+  </script>
+</body>
+</html>

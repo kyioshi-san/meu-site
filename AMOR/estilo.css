@@ -1,0 +1,109 @@
+/* Fundo da página com imagem */
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  color: #ffffff;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Imagem de fundo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("minha_namorada.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+/* Overlay com filtro */
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  backdrop-filter: brightness(0.5) blur(6px);
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+
+/* Container para o conteúdo com barra de rolagem */
+.container {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  padding: 50px 30px 30px 30px;
+  margin: 80px auto 40px auto;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch; /* suaviza rolagem no mobile */
+}
+
+/* Estilização da barra de rolagem (opcional, funciona em Chrome e Edge) */
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #ff69b4;
+  border-radius: 4px;
+}
+
+/* Título principal */
+h1 {
+  font-size: 3em;
+  color: #ff69b4;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  margin-bottom: 15px;
+}
+
+/* Estilo dos parágrafos */
+p {
+  font-size: 1.5em;
+  margin: 20px 0;
+  line-height: 1.6;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  white-space: pre-line;
+}
+
+/* Assinatura */
+.signature {
+  font-style: italic;
+  font-size: 1.3em;
+  margin-top: 40px;
+  color: #ffc0cb;
+}
+
+/* Coração animado */
+.heart {
+  font-size: 60px;
+  animation: pulse 1.5s infinite, glow 2s ease-in-out infinite;
+  margin-bottom: 30px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Animação do coração */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Animação de brilho no coração */
+@keyframes glow {
+  0% { text-shadow: 0 0 5px #ff69b4, 0 0 15px #ff1493; }
+  50% { text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493; }
+  100% { text-shadow: 0 0 5px #ff69b4, 0 0 15px #ff1493; }
+}

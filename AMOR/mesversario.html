@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nosso Mêsversário</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Georgia&display=swap');
+
+    /* Fundo com imagem desfocada */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      color: #fff;
+      overflow-y: auto;
+      background: url('minha_namorada.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      min-height: 100vh;
+    }
+    /* Camada escura desfocada para destaque do conteúdo */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 40px auto 60px;
+      padding: 20px 30px;
+      background: rgba(255, 192, 203, 0.15);
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.8rem;
+      margin-bottom: 15px;
+      color: #ff69b4;
+      text-shadow:
+        0 0 5px #ffb6c1,
+        0 0 10px #ff1493;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        text-shadow:
+          0 0 5px #ffb6c1,
+          0 0 10px #ff1493;
+      }
+      50% {
+        text-shadow:
+          0 0 20px #ff69b4,
+          0 0 40px #ff1493;
+      }
+    }
+
+    .texto {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      color: #ffe4e1;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+      animation: fadeInText 1.8s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInText {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      padding: 0 10px;
+      margin-bottom: 30px;
+    }
+
+    .galeria a {
+      display: block;
+      border-radius: 12px;
+      padding: 5px;
+      background: linear-gradient(135deg, #ff9ac1, #ffb6c1, #ffc0cb);
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.7);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      animation: pulseSlow 5s ease-in-out infinite;
+    }
+
+    .galeria a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px #ff69b4;
+    }
+
+    @keyframes pulseSlow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    .galeria img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      aspect-ratio: 3 / 4;
+      display: block;
+      user-select: none;
+    }
+
+    a.voltar {
+      display: inline-block;
+      padding: 10px 25px;
+      margin-top: 20px;
+      background: #ff69b4;
+      color: white;
+      font-weight: 700;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1.3rem;
+      box-shadow: 0 0 15px #ff69b4;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    a.voltar:hover {
+      background: #ff1493;
+      box-shadow: 0 0 25px #ff1493;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.97);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 10000;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      display: flex;
+      animation: fadeInLightbox 0.4s ease forwards;
+    }
+
+    @keyframes fadeInLightbox {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #ff69b4;
+      user-select: none;
+    }
+
+    .lightbox-controls {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 2.5rem;
+      color: #ff69b4;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    .lightbox-controls:hover {
+      color: #ff1493;
+    }
+
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      color: #ff69b4;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+      user-select: none;
+      z-index: 10001;
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    .lightbox-nav:hover {
+      color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Mais um mês com você 💘</h1>
+    <p class="texto">
+      Celebrar nosso amor a cada mês é um presente divino.<br>
+      Cada foto é um capítulo da nossa história, um suspiro de saudade e uma promessa de muitos momentos juntos.<br>
+      Você é a luz que ilumina meu caminho e o motivo do meu sorriso todos os dias.<br><br>
+      Obrigado por ser meu amor, minha melhor amiga e minha inspiração eterna.<br>
+      Que venham muitos outros meses para comemorarmos lado a lado! Te amo infinitamente. 💖
+    </p>
+
+    <div class="galeria" id="galeria">
+      <!-- Substitua os src das imagens com os arquivos reais -->
+      <a href="#"><img src="foto1.jpg" alt="Foto 1" /></a>
+      <a href="#"><img src="foto2.webp" alt="Foto 2" /></a>
+      <a href="#"><img src="foto3.jpg" alt="Foto 3" /></a>
+      <a href="#"><img src="foto4.webp" alt="Foto 4" /></a>
+      <a href="#"><img src="foto5.jpg" alt="Foto 5" /></a>
+      <a href="#"><img src="foto6.webp" alt="Foto 6" /></a>
+      <a href="#"><img src="foto7.jpg" alt="Foto 7" /></a>
+      <a href="#"><img src="foto8.webp" alt="Foto 8" /></a>
+      <a href="#"><img src="foto9.jpg" alt="Foto 9" /></a>
+      <a href="#"><img src="foto10.webp" alt="Foto 10" /></a>
+      <a href="#"><img src="foto11.jpg" alt="Foto 11" /></a>
+      <a href="#"><img src="foto12.webp" alt="Foto 12" /></a>
+      <a href="#"><img src="foto13.jpg" alt="Foto 13" /></a>
+      <a href="#"><img src="foto14.jpg" alt="Foto 14" /></a>
+      <a href="#"><img src="foto15.jpg" alt="Foto 15" /></a>
+      <a href="#"><img src="foto16.jpg" alt="Foto 16" /></a>
+      <a href="#"><img src="foto17.jpg" alt="Foto 17" /></a>
+      <a href="#"><img src="foto18.jpg" alt="Foto 18" /></a>
+      <a href="#"><img src="foto19.jpg" alt="Foto 19" /></a>
+      <a href="#"><img src="foto20.jpg" alt="Foto 20" /></a>
+    </div>
+
+    <a href="index.html" class="voltar">← Voltar para a cartinha</a>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-controls" onclick="fecharLightbox()">❌</div>
+    <div class="lightbox-nav lightbox-prev" onclick="navegar(-1)">⬅️</div>
+    <img id="lightbox-img" src="" alt="Imagem ampliada" />
+    <div class="lightbox-nav lightbox-next" onclick="navegar(1)">➡️</div>
+  </div
